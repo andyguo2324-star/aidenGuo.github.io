@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iMark 技术支持 | iMark Support</title>
+<style>
+  :root {
+    --accent: #5b7cfa;
+    --accent-2: #9a6cff;
+    --accent-soft: rgba(91, 124, 250, .12);
+    --bg: #f6f7fb;
+    --card: #ffffff;
+    --text: #1c1c1e;
+    --muted: #6e6e73;
+    --border: rgba(0,0,0,.06);
+    --shadow: 0 8px 28px rgba(31, 38, 135, .08);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  /* ===== Hero ===== */
+  header {
+    position: relative;
+    background: linear-gradient(135deg, #5b7cfa 0%, #7a5cff 55%, #a04cff 100%);
+    color: #fff;
+    padding: 76px 0 88px;
+    text-align: center;
+    overflow: hidden;
+  }
+  header::before {
+    content: "";
+    position: absolute;
+    top: -120px; left: -80px;
+    width: 340px; height: 340px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.10);
+    filter: blur(8px);
+  }
+  header::after {
+    content: "";
+    position: absolute;
+    bottom: -160px; right: -60px;
+    width: 420px; height: 420px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.08);
+    filter: blur(10px);
+  }
+  header > * { position: relative; z-index: 1; }
+  header .logo {
+    width: 92px; height: 92px; border-radius: 24px;
+    background: rgba(255,255,255,.16);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.28);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 22px;
+    box-shadow: 0 18px 40px rgba(20, 20, 80, .30);
+    animation: float 4s ease-in-out infinite;
+    overflow: hidden;
+  }
+  header .logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  header h1 { font-size: 34px; font-weight: 800; letter-spacing: .5px; text-shadow: 0 2px 12px rgba(0,0,0,.12); }
+  header .tagline { margin-top: 10px; font-size: 15px; opacity: .94; font-weight: 500; }
+  header .badge-row { margin-top: 22px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  header .badge {
+    background: rgba(255,255,255,.16);
+    border: 1px solid rgba(255,255,255,.30);
+    border-radius: 999px;
+    padding: 7px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  /* ===== Language switch ===== */
+  .lang-switch {
+    position: absolute;
+    top: 20px; right: 24px;
+    z-index: 3;
+    display: flex;
+    gap: 2px;
+    background: rgba(255,255,255,.16);
+    border: 1px solid rgba(255,255,255,.28);
+    border-radius: 999px;
+    padding: 4px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .lang-switch button {
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    opacity: .72;
+    transition: opacity .15s ease, background .15s ease;
+  }
+  .lang-switch button.active { background: rgba(255,255,255,.26); opacity: 1; }
+  @media (max-width: 420px) {
+    .lang-switch { top: 14px; right: 14px; }
+  }
+
+  main { padding: 0 0 70px; }
+
+  /* ===== Cards ===== */
+  section {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 22px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  section:hover { transform: translateY(-2px); box-shadow: 0 12px 34px rgba(31, 38, 135, .12); }
+
+  .section-title {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 16px;
+  }
+  .section-title .icon {
+    width: 40px; height: 40px; flex: 0 0 40px;
+    border-radius: 12px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .section-title h2 { font-size: 19px; font-weight: 800; }
+  .section-title .sub { font-size: 12.5px; color: var(--muted); font-weight: 500; }
+
+  h3 { font-size: 15.5px; font-weight: 700; margin: 20px 0 6px; display: flex; align-items: center; gap: 8px; }
+  h3 .dot { width: 7px; height: 7px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); flex: 0 0 7px; }
+  p { color: var(--text); margin-bottom: 10px; }
+  .muted { color: var(--muted); }
+  .privacy-policy { font-size: 14px; color: var(--muted); }
+  .privacy-policy h3 { color: var(--text); }
+  .privacy-policy p { color: var(--muted); margin-bottom: 10px; }
+  .privacy-policy ul { padding-left: 20px; margin-bottom: 10px; }
+  .privacy-policy a { color: var(--accent); }
+
+  /* ===== Contact ===== */
+  .contact-inner {
+    background: linear-gradient(135deg, var(--accent-soft), rgba(154,108,255,.10));
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin-top: 6px;
+    border: 1px dashed var(--accent);
+  }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #fff !important;
+    padding: 13px 28px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 15px;
+    box-shadow: 0 10px 24px rgba(91,124,250,.35);
+    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+    margin-top: 14px;
+    text-decoration: none;
+    max-width: 100%;
+    text-align: center;
+    white-space: normal;
+    word-break: break-all;
+    line-height: 1.4;
+  }
+  .btn:hover { text-decoration: none; transform: translateY(-2px); box-shadow: 0 14px 30px rgba(91,124,250,.45); filter: brightness(1.05); }
+
+  /* ===== Features ===== */
+  .feature-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 6px; }
+  .feature {
+    display: flex; gap: 14px;
+    padding: 16px 18px;
+    border-radius: 14px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .feature .f-icon {
+    width: 42px; height: 42px; flex: 0 0 42px;
+    border-radius: 12px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 12px rgba(31,38,135,.06);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .feature h3 { margin: 0 0 4px; font-size: 15px; }
+  .feature p { margin: 0; font-size: 13.5px; }
+
+  /* ===== FAQ ===== */
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 18px 4px;
+  }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-item h3 { margin: 0 0 6px; font-size: 15px; }
+  .faq-item h3 .q-tag {
+    font-size: 12px; font-weight: 800;
+    background: var(--accent-soft); color: var(--accent);
+    padding: 3px 10px; border-radius: 999px;
+    margin-right: 4px;
+  }
+  .faq-item p { margin: 0; font-size: 14px; }
+
+  /* ===== App info ===== */
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 6px; }
+  .info-cell {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+  }
+  .info-cell .k { font-size: 12px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .4px; }
+  .info-cell .v { font-size: 15px; font-weight: 700; margin-top: 3px; }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    padding: 30px 0 56px;
+  }
+  footer .footer-logo {
+    font-size: 18px; font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 560px) {
+    .info-grid { grid-template-columns: 1fr; }
+    header { padding: 56px 0 72px; }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1016;
+      --card: #1a1c26;
+      --text: #f2f3f7;
+      --muted: #9aa0b5;
+      --border: rgba(255,255,255,.08);
+      --accent-soft: rgba(91,124,250,.16);
+      --shadow: 0 8px 28px rgba(0,0,0,.45);
+    }
+    .feature, .info-cell { background: #13151f; }
+    .feature .f-icon { background: #1f2231; }
+    .contact-inner { border-color: var(--accent); }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="lang-switch">
+    <button data-lang="zh">中文</button>
+    <button data-lang="en">English</button>
+  </div>
+  <div class="logo"><img src="imark-icon.png" alt="iMark"></div>
+  <h1>iMark</h1>
+  <p class="tagline" data-zh="照片水印与 EXIF 信息排版工具" data-en="Photo Watermark &amp; EXIF Layout Tool"></p>
+  <div class="badge-row">
+    <span class="badge" data-zh="📸 照片水印" data-en="📸 Photo Watermark"></span>
+    <span class="badge" data-zh="🏷️ 品牌 Logo" data-en="🏷️ Brand Logos"></span>
+    <span class="badge" data-zh="⚙️ EXIF 排版" data-en="⚙️ EXIF Layout"></span>
+    <span class="badge" data-zh="📦 批量导出" data-en="📦 Batch Export"></span>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="section-title">
+      <div class="icon">💬</div>
+      <div>
+        <h2 data-zh="联系我们" data-en="Contact Us"></h2>
+        <div class="sub" data-zh="技术支持邮箱" data-en="Support Email"></div>
+      </div>
+    </div>
+    <p class="muted" data-zh="遇到问题需要帮助？欢迎通过邮件联系我们，我们会在 1-3 个工作日内回复。" data-en="Need help? Email us and we will reply within 1-3 business days."></p>
+    <div class="contact-inner">
+      <div class="muted" style="font-size:14px;" data-zh="📮 联系邮箱" data-en="📮 Contact Email"></div>
+      <a class="btn" href="mailto:guolianghao12345@hotmail.com">
+        <span>✉️</span> guolianghao12345@hotmail.com
+      </a>
+    </div>
+  </section>
+
+  <!-- Privacy -->
+  <section id="privacy">
+    <div class="section-title">
+      <div class="icon">🔒</div>
+      <div>
+        <h2 data-zh="隐私政策" data-en="Privacy Policy"></h2>
+        <div class="sub" data-zh="我们如何保护您的数据" data-en="How We Protect Your Data"></div>
+      </div>
+    </div>
+
+    <div class="privacy-policy">
+      <h3><span class="dot"></span><span data-zh="iMark隐私政策" data-en="iMark Privacy Policy"></span></h3>
+      <p data-zh="欢迎您访问我们的产品。iMark（以下简称“产品和服务”）是由郭良浩（以下简称“我们”）开发并运营的。 确保用户的数据安全和隐私保护是我们的首要任务，本隐私政策载明了您访问和使用我们的产品和服务时所收集的数据及其处理方式。本应用以免费服务的形式提供，并包含内购项目（Apple In-App Purchase）。" data-en="Welcome to our product. iMark (hereafter referred to as 'the product and service') is developed and operated by Guo Lianghao (hereafter referred to as 'we'). Ensuring the security and privacy of user data is our top priority. This privacy policy explains what data is collected and how it is handled when you access and use our product and service. The app is provided as a free service and includes in-app purchases (Apple In-App Purchase)."></p>
+      <p data-zh="请您在继续使用我们的产品前，务必认真仔细阅读并确认充分理解本隐私政策全部规则和要点。 一旦您选择使用，即视为您同意本隐私政策的全部内容。如您不同意相关协议或其中的任何条款，应停止使用我们的产品和服务。" data-en="Please carefully read and fully understand all the rules and key points of this privacy policy before continuing to use our product. By choosing to use it, you agree to all of its contents. If you do not agree with this policy or any of its terms, please stop using our product and service."></p>
+      <p data-zh="本隐私政策帮助您了解以下内容：" data-en="This privacy policy helps you understand the following:"></p>
+      <ul>
+        <li data-zh="我们如何收集和使用您的个人信息；" data-en="How we collect and use your personal information;"></li>
+        <li data-zh="我们如何存储和保护您的个人信息；" data-en="How we store and protect your personal information;"></li>
+        <li data-zh="我们如何共享、转让、公开披露您的个人信息；" data-en="How we share, transfer, and publicly disclose your personal information;"></li>
+        <li data-zh="第三方服务" data-en="Third-party services"></li>
+      </ul>
+
+      <h3><span class="dot"></span><span data-zh="我们如何收集和使用您的个人信息" data-en="How We Collect and Use Your Personal Information"></span></h3>
+      <p data-zh="个人信息是指以电子或者其他方式记录的，能够单独或者与其他信息结合，识别特定自然人身份或者反映特定自然人活动情况的各种信息。 由于我们的产品和服务并不需要此类信息，因此很高兴的告知您， 我们不会收集关于您的任何个人信息。" data-en="Personal information refers to any information recorded electronically or in other ways that can, alone or combined with other information, identify a specific natural person or reflect the activities of a specific natural person. Since our product and service do not require such information, we are glad to inform you that we do not collect any of your personal information."></p>
+
+      <h3><span class="dot"></span><span data-zh="我们如何存储和保护您的个人信息" data-en="How We Store and Protect Your Personal Information"></span></h3>
+      <p data-zh="由于我们的产品和服务并不需要此类信息，因此很高兴的告知您， 我们不会存储关于您的任何个人信息。" data-en="Since our product and service do not require such information, we are glad to inform you that we do not store any of your personal information."></p>
+
+      <h3><span class="dot"></span><span data-zh="我们如何共享、转让、公开披露您的个人信息" data-en="How We Share, Transfer, and Publicly Disclose Your Personal Information"></span></h3>
+      <p data-zh="在管理我们的日常业务活动所需要时，为追求合法利益以更好地服务客户， 我们将合规且恰当的使用您的个人信息。出于对业务和各个方面的综合考虑，我们仅自身使用这些数据，不与任何第三方分享。" data-en="When necessary for managing our daily business operations and to pursue legitimate interests in better serving customers, we will use your personal information in a compliant and appropriate manner. Considering all business aspects, we only use this data ourselves and do not share it with any third party."></p>
+      <p data-zh="我们可能会根据法律法规规定，或按政府主管部门的强制性要求，对外共享您的个人信息。 在符合法律法规的前提下，当我们收到上述披露信息的请求时，我们会要求必须出具与之相应的法律文件，如传票或调查函。 我们坚信，对于要求我们提供的信息，应该在法律允许的范围内尽可能保持透明。" data-en="We may share your personal information externally in accordance with laws and regulations, or per mandatory requirements from government authorities. When we receive such disclosure requests, we will require corresponding legal documents, such as subpoenas or investigation letters. We believe that information requested from us should be as transparent as possible within the scope permitted by law."></p>
+      <p data-zh="在以下情形中，共享、转让、公开披露您的个人信息无需事先征得您的授权同意：" data-en="In the following circumstances, sharing, transferring, or publicly disclosing your personal information does not require your prior authorization and consent:"></p>
+      <ul>
+        <li data-zh="与国家安全、国防安全直接相关的；" data-en="Directly related to national security or national defense security;"></li>
+        <li data-zh="与犯罪侦查、起诉、审判和判决执行等直接相关的；" data-en="Directly related to criminal investigation, prosecution, trial, and execution of judgments;"></li>
+        <li data-zh="出于维护您或其他个人的生命、财产等重大合法权益但又很难得到本人同意的；" data-en="Necessary to protect the life, property, or other significant legal rights and interests of you or others when it is difficult to obtain the individual's consent;"></li>
+        <li data-zh="您自行向社会公众公开的个人信息；" data-en="Personal information you have publicly disclosed to the public yourself;"></li>
+        <li data-zh="从合法公开披露的信息中收集个人信息的，如合法的新闻报道、政府信息公开等渠道。" data-en="Personal information collected from legally publicly disclosed sources, such as lawful news reports and government information disclosure channels;"></li>
+        <li data-zh="根据个人信息主体要求签订和履行合同所必需的；" data-en="Necessary for signing and performing contracts as required by the data subject;"></li>
+        <li data-zh="用于维护所提供的产品或服务的安全稳定运行所必需的，例如发现、处置产品或服务的故障；" data-en="Necessary for maintaining the safe and stable operation of the provided product or service, such as detecting and resolving faults of the product or service;"></li>
+        <li data-zh="法律法规规定的其他情形。" data-en="Other circumstances provided by laws and regulations."></li>
+      </ul>
+
+      <h3><span class="dot"></span><span data-zh="第三方服务" data-en="Third-Party Services"></span></h3>
+      <p data-zh="请注意，本应用使用了第三方服务，这些服务有自己的隐私政策来处理数据。以下是本应用使用的第三方服务提供商的隐私政策链接：" data-en="Please note that this app uses third-party services, which have their own privacy policies for processing data. Below is the privacy policy link of the third-party service provider used by this app:"></p>
+      <ul>
+        <li data-zh="Apple In-App Purchases" data-en="Apple In-App Purchases"></li>
+      </ul>
+
+      <h3><span class="dot"></span><span data-zh="本隐私政策的变更" data-en="Changes to This Privacy Policy"></span></h3>
+      <p data-zh="我们可能会不时更新我们的隐私政策。因此，建议您定期查看此页以了解更改。如有任何更改，我们会在本页公布新的隐私政策。" data-en="We may update our privacy policy from time to time. Therefore, we recommend that you review this page periodically to stay informed of any changes. If there are any changes, we will post the new privacy policy on this page."></p>
+      <p data-zh="该政策自2026年8月6日起生效。" data-en="This policy is effective as of August 6, 2026."></p>
+
+      <h3><span class="dot"></span><span data-zh="联系我们" data-en="Contact Us"></span></h3>
+      <p data-zh="如您在阅读过程中，对本政策有任何疑问，可联系我们的客服咨询， 请通过 <a href=&quot;mailto:guolianghao12345@hotmail.com&quot;>guolianghao12345@hotmail.com</a> 或产品中的反馈方式与我们取得联系，我们将尽力在合理时间内回复并解决您的问题。" data-en="If you have any questions about this policy, please contact our customer service via <a href=&quot;mailto:guolianghao12345@hotmail.com&quot;>guolianghao12345@hotmail.com</a> or through the feedback methods in the product. We will do our best to reply and resolve your questions within a reasonable time."></p>
+    </div>
+  </section>
+
+  <!-- Feature overview -->
+  <section id="features">
+    <div class="section-title">
+      <div class="icon">✨</div>
+      <div>
+        <h2 data-zh="功能介绍" data-en="Features"></h2>
+        <div class="sub" data-zh="核心能力一览" data-en="What You Can Do"></div>
+      </div>
+    </div>
+    <div class="feature-grid">
+      <div class="feature">
+        <div class="f-icon">🖊️</div>
+        <div>
+          <h3 data-zh="水印编辑" data-en="Watermark Editing"></h3>
+          <p data-zh="为照片添加文字、品牌 Logo、相机 EXIF 信息（相机型号、镜头、曝光参数）等水印，支持自由拖拽调整位置、角度与样式。" data-en="Add text, brand logos, and camera EXIF info (camera model, lens, exposure settings) as watermarks, with free drag to adjust position, angle, and style."></p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="f-icon">🗂️</div>
+        <div>
+          <h3 data-zh="多图批处理" data-en="Batch Processing"></h3>
+          <p data-zh="一次选择多张照片，统一或逐图应用水印后批量导出，保留原始画质。" data-en="Select multiple photos at once, apply watermarks uniformly or per image, and export in batch while preserving original quality."></p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="f-icon">🏷️</div>
+        <div>
+          <h3 data-zh="品牌图标库" data-en="Brand Logo Library"></h3>
+          <p data-zh="内置苹果、索尼、佳能、尼康、富士、徕卡、DJI 等主流相机品牌 Logo，并支持导入自定义图标。" data-en="Includes logos of major camera brands such as Apple, Sony, Canon, Nikon, Fujifilm, Leica, and DJI, with support for importing custom icons."></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="section-title">
+      <div class="icon">❓</div>
+      <div>
+        <h2 data-zh="常见问题" data-en="FAQ"></h2>
+        <div class="sub" data-zh="常见问题解答" data-en="Frequently Asked Questions"></div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <h3><span class="q-tag">Q</span><span data-zh="导出的图片会被压缩吗？" data-en="Will exported images be compressed?"></span></h3>
+      <p data-zh="A：你可以自由选择导出分辨率与质量。默认保持原图尺寸与高质量输出，避免画质损失。" data-en="A: You can freely choose the export resolution and quality. By default, images keep their original size and high-quality output to avoid quality loss."></p>
+    </div>
+
+    <div class="faq-item">
+      <h3><span class="q-tag">Q</span><span data-zh="如何恢复已购买的订阅？" data-en="How do I restore my purchase?"></span></h3>
+      <p data-zh="A：打开 App，进入「设置 → iMark Pro」，点击「恢复购买」即可，无需重复付费。若无法恢复，请通过邮件联系我们并提供购买凭证。" data-en="A: Open the app, go to 'Settings → iMark Pro', and tap 'Restore Purchase' — no need to pay again. If you cannot restore, please contact us by email with proof of purchase."></p>
+    </div>
+
+    <div class="faq-item">
+      <h3><span class="q-tag">Q</span><span data-zh="添加位置水印需要什么权限？" data-en="What permission does the location watermark need?"></span></h3>
+      <p data-zh="A：位置水印需要访问你的位置信息。位置数据仅用于在你选择时写入水印，不会被上传或分享。" data-en="A: The location watermark needs access to your location. Location data is only written into the watermark when you choose to do so and is never uploaded or shared."></p>
+    </div>
+
+    <div class="faq-item">
+      <h3><span class="q-tag">Q</span><span data-zh="支持哪些相机型号的 EXIF 信息？" data-en="Which camera EXIF info is supported?"></span></h3>
+      <p data-zh="A：支持读取图片 EXIF 中的相机型号、镜头、曝光时间、光圈、ISO 等常用参数，并可自定义显示格式与排版。" data-en="A: It supports reading common EXIF parameters such as camera model, lens, exposure time, aperture, and ISO, with customizable display format and layout."></p>
+    </div>
+  </section>
+
+  <!-- App info -->
+  <section id="info">
+    <div class="section-title">
+      <div class="icon">ℹ️</div>
+      <div>
+        <h2 data-zh="应用信息" data-en="App Info"></h2>
+        <div class="sub" data-zh="应用概况" data-en="About This App"></div>
+      </div>
+    </div>
+    <div class="info-grid">
+      <div class="info-cell"><div class="k" data-zh="应用名称" data-en="App Name"></div><div class="v">iMark</div></div>
+      <div class="info-cell"><div class="k" data-zh="开发者" data-en="Developer"></div><div class="v">郭良浩</div></div>
+      <div class="info-cell"><div class="k" data-zh="版本" data-en="Version"></div><div class="v">1.0</div></div>
+      <div class="info-cell"><div class="k" data-zh="最后更新" data-en="Last Updated"></div><div class="v">2026</div></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-logo">iMark</div>
+  <p data-zh="iMark 技术支持 · © 2026 iMark. All rights reserved." data-en="iMark Support · © 2026 iMark. All rights reserved."></p>
+</footer>
+
+<script>
+(function () {
+  var LANG_KEY = 'iMark-lang';
+
+  function detectLang() {
+    var params = new URLSearchParams(window.location.search);
+    var fromUrl = params.get('lang');
+    if (fromUrl === 'zh' || fromUrl === 'en') return fromUrl;
+    try {
+      var stored = localStorage.getItem(LANG_KEY);
+      if (stored === 'zh' || stored === 'en') return stored;
+    } catch (e) {}
+    var nav = (navigator.language || '').toLowerCase();
+    return nav.indexOf('zh') === 0 ? 'zh' : 'en';
+  }
+
+  function applyLang(lang) {
+    var attr = lang === 'zh' ? 'data-zh' : 'data-en';
+    document.documentElement.lang = lang === 'zh' ? 'zh-Hans' : 'en';
+    document.title = lang === 'zh' ? 'iMark 技术支持' : 'iMark Support';
+    document.querySelectorAll('[' + attr + ']').forEach(function (el) {
+      el.innerHTML = el.getAttribute(attr);
+    });
+    document.querySelectorAll('.lang-switch button').forEach(function (btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+    var url = new URL(window.location.href);
+    if (lang === 'en') {
+      url.searchParams.set('lang', 'en');
+    } else {
+      url.searchParams.delete('lang');
+    }
+    history.replaceState(null, '', url.toString());
+    try {
+      localStorage.setItem(LANG_KEY, lang);
+    } catch (e) {}
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    applyLang(detectLang());
+    document.querySelectorAll('.lang-switch button').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        applyLang(btn.getAttribute('data-lang'));
+      });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
